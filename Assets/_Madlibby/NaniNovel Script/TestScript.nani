@@ -1,0 +1,3 @@
+Narrator: Testing Madlibby script
+@loadScene Platformer 
+@stop
