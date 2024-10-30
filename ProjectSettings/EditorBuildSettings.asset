@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Madlibby/_Scenes/Additive/PauseMenu.unity
     guid: e866735e4addd4894bff11cb8fb8f351
+  - enabled: 1
+    path: Assets/_Madlibby/_Scenes/Additive/MadLibController.unity
+    guid: 029f369aecbd04ffaa8ffddeb006cafb
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

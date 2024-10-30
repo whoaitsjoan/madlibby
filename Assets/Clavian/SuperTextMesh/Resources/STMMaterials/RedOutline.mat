@@ -93,11 +93,12 @@ Material:
     - _ShadowDistance: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquareOutline: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _UseVector3: 0
     - _WriteMask: 255
-    - _ZTestMode: 2
+    - _ZTestMode: 4
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
