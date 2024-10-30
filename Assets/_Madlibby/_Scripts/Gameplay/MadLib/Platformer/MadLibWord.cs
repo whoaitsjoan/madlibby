@@ -89,10 +89,15 @@ namespace Madlibby {
 		/// <summary>
 		/// Gets called when the word is grabbed by Libby.
 		/// </summary>
+		[Button, HideInEditorMode]
 		public void OnWordGrabbed() {
-			throw new NotImplementedException("ADD THIS");
+			// Send the word over to the word dictionary in the controller.
+			MadLibCanvasController.Instance.UpdateWordDictionary(
+				wordIDType: this.wordIDType, 
+				baseWord: this.baseWord);
 		}
 		#endregion
+
 		
 	}
 	

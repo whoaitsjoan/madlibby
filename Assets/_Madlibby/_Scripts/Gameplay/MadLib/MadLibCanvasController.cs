@@ -77,14 +77,30 @@ namespace Madlibby {
 
 		#region PRESENTATION
 		/// <summary>
-		/// Rebuilds the label on the sentence.
+		/// Updates the word dictionary with the specified word ID and associated word.
 		/// </summary>
-		public void RebuildSentenceLabel() {
-			this.madLibSentenceLabel.text = this.RewriteSentence();
+		/// <param name="wordIDType">The ID of the word being updated.</param>
+		/// <param name="baseWord">The word to update with.</param>
+		public void UpdateWordDictionary(MadLibWordIDType wordIDType, string baseWord) {
+			// If the word exists, override it.
+			if (this.HasWord(wordIDType: wordIDType) == true) {
+				this.CurrentWordDict[wordIDType] = baseWord;
+			} else {
+				// If not, go ahead and add it.
+				this.CurrentWordDict.Add(wordIDType, baseWord);
+			}
+			// Refresh the word sentence.
+			this.RebuildSentenceLabel();
 		}
 		#endregion
 		
 		#region HELPERS
+		/// <summary>
+		/// Rebuilds the label on the sentence.
+		/// </summary>
+		private void RebuildSentenceLabel() {
+			this.madLibSentenceLabel.text = this.RewriteSentence();
+		}
 		/// <summary>
 		/// Determines what the new sentence should be based on the current state of the dictionary.
 		/// </summary>
