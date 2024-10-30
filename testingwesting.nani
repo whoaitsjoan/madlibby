@@ -1,0 +1,144 @@
+# beginlibby
+; cg of an old style tv, turned off second CG is implied zoom in
+;Zoom in on TV screen. Create a customUI element that envelops a tv frame border around the main camera.
+;call with @showUI tvscreen for example
+;static bg w/ static sfx volume controlled ofc and could be 1 still image for static for eye strain reasons or 2 alternating illustrated static frames alternating relatively slowly)
+; inside the platformer space, sprite libby could have a unique sprite animation in center screen *Waking up in Libby’s brain space* 
+; define '???' as a character called 'new' in character settings as well as 'L' for libby and 'BL' for big libby
+new: [Spawn ShakePrinter] Where am I? What happened? 
+new: <size=50> In your head, Libby. </size>
+new: <size=50>You did that thing where you freeze up in front of a cute girl. </size>
+new: <size=50>Again.</size>
+;VISUAL NOVEL PORTION V DEFINE AMINA AS 'A'  
+@char L.default pos:75
+@char A.default pos:25
+@back carabiner id:vnspace
+new: Hey. Cool hoodie.
+@char L.anxious pos:75 
+@Spawn ShakeCharacter params:L
+;just want to say typing L on here is autocorrecting to lesbian
+L: [Spawn ShakePrinter] OH. I. UH. UM...
+@back carabiner id:vnspace tint:#808080
+@char L.default tint:#808080
+@char A.default tint:#808080
+@sfx recordscratch volume: 0.4
+;change character sprite color & bg to gray using tint:#808080, recordscratch sfx first. to reset characters/bg back to regular colors use #FFFFFF
+new: <size=50>I'm getting sick of you messing this up, so we're gonna do something about it!</size>
+@back carabiner id:vnspace visible:false
+@char A.default visible:false
+@char L.default visible:false
+;return to platformer space, char sprites may overlay during any given time if specified. sprite libby is in the center
+;itd be really funny if big libby was the size of like, issun from okami and stood on her shoulder. so we dont have to give her a sprite in the platformer
+brainspacedialogue1
+@char BL.default pose:75 
+BL: <size=50>I'm your Inner Voice of Confidence.</size>
+BL: <size=50>You can call me...[wait 1][char BL.confident]<br> Big Libby!</size>
+@char BL.default
+BL: <size=50>I'm the only thing that can get you out of this mess! Got it?</size>
+@char L.anxious pos:25 look:Left tint:#FFFFFF
+@choice "Why have I never been here before?" goto:.totallibbyaction
+@choice "What's happening to me right now?" goto:.thisisnotmybeautifulhouse
+@choice "Why are you called Big Libby...?" goto:.nerdprobably
+@choice "..." goto:.ohsoweredoingthisnow
+@stop
+
+# totallibbyaction
+L: I mean, if this is in my head right now...
+L: ...How am I also inside of it?!
+BL: <size=50>[Spawn ShakePrinter]Shhhhh!!!</size>
+BL: You’re gonna give yourself a headache...
+BL: <size=50>Don't think too much about it!!! That's my job.</size>
+L: ...
+@goto .continuefromlibbyception
+
+# thisisnotmybeautifulhouse
+BL: Oh, this is happening a lot slower than it looks, it’s maybe a few seconds at most for you.
+BL: <size=50>Like a near-death experience!</size>
+;shocked libby robin sprite
+L: [Spawn ShakePrinter] Wait, what? 
+@char BL.confident
+BL: <size=50>Okay, moving on!</size>
+@ goto .continuefromlibbyception
+
+# nerdprobably
+L: You're not even that tall...
+BL: Hey, it’s your brain, you tell me! 
+L: I'd rather not think about it...
+@goto .continuefromlibbyception
+
+# ohsoweredoingthisnow
+@char BL.confident
+BL: <size=50>Great!</size>
+
+# continuefromlibbyception
+;Camera pans to word block 
+BL: See how that Phraseling is stuck over there all alone?
+BL: Well, the good news is, you can pick it up!
+BL: Grab it with {INPUT}…
+;Camera pans to exit doorway 
+BL: …and bring it over there!
+BL: Easy! That way, we can make sure you say that line that you really want to!
+;Camera focuses back on Libby 
+BL: Go ahead, try it! 
+@char BL visible:false
+;No time limit section to experiment with controls
+;one word block and no enemies, minimal platforming and prompts to establish running, moving to goal.
+;variables will need to be created in the game settings that tie into script to naninovel cohesion.
+;set variables to true if platformer sections are successfully completed and specify for each word individually.
+;for this section, create a variable such as phrasling1tutorial==true to specify when the word is brought through the exit door.
+@set phrasling1tutorial=true
+;returning to the visual novel portion via script should call to return to this specific portion below v
+# phraseling1collected
+@if phrasling1tutorial==true
+@goto .tutorialsuccess1
+@else
+something fucked up!!!!!!!!!
+@endif
+
+# tutorialsuccess1
+; the specific word on this block could easily be 'killer'
+;*Cuts back to VN outside dialog.”
+
+@char L.happy pose:75
+@char A.default pose:75
+back carabiner id:vnspace tint:#FFFFFF
+
+Libby, happy: Oh, thanks!!!
+L: [char L.confident]It’s not as cool as that killer outfit on you, though.
+@char A.smug
+A: I’m Amina. You're cute. Can I buy you a drink?
+@char L.anxious
+L: Ummm… 
+
+@char A.default visible:false
+@char L.default visible:false
+back carabiner id:vnspace visible:false
+
+;*Cuts to brain space again, libby center*
+;worst case scenario the brainspace dialogue will need to be held in a separate script
+# brainspacedialogue2
+@char BL pose:75
+BL: Seems like we’re getting somewhere! 
+@char L.anxious pose:25
+L: I think my heart’s going to explode, they’re so hot...
+BL: [Spawn ShakePrinter] Well, BEFORE that happens...
+BL: How about you actually say something back to her? 
+;[if flag for option 2 = true] (what is this referencing?)
+L: I thought time was slowed down here? 
+BL: Yeah, that was a warmup, we don’t want you staring into space forever.
+@endif
+BL: Look!
+@showUI timerUI
+BL: That’s going to tell you how much time we have left.
+BL: You know, before you just give her the silent treatment.
+L: ...
+BL: Look, there's a lot of thoughts in that head of yours, and they're not always great!
+BL: You might wanna avoid those ones...
+;Camera pans to enemy spawning into newlevel section. 
+@char L.surprised
+L: Honestly, this is a pretty sick way for my brain to try and kill me.
+BL: Remember, it’s all in your head!
+@char L visible:false
+@char BL visible:false
+;[1st proper level with dialog options starts.] 
+@stop
