@@ -16,8 +16,8 @@ MonoBehaviour:
   showWavesFoldout: 1
   showJittersFoldout: 0
   showDrawAnimsFoldout: 0
-  showTextColorFoldout: 0
-  showColorsFoldout: 0
+  showTextColorFoldout: 1
+  showColorsFoldout: 1
   showGradientsFoldout: 0
   showTexturesFoldout: 0
   showInlineFoldout: 0
