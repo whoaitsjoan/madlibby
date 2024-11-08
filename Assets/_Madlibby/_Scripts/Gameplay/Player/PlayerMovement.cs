@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Madlibby;
 using UnityEngine;
 
 
@@ -365,6 +368,13 @@ private void Grab(GameObject grabbed)
     //Making sure the item moves with the player and doesn't have collision/physics while doing so
     if (grabbed.GetComponent<Rigidbody2D>())
         grabbed.GetComponent<Rigidbody2D>().simulated = false;
+    
+    // Get all of the components on the grabbed object and call their functions.
+    // There very well could be multiple IGrabbables attached to it.
+    List<IGrabbable> grabbableComponents = grabbed.GetComponents<IGrabbable>().ToList();
+    foreach (IGrabbable grabbable in grabbableComponents) {
+        grabbable.OnGrabbed();
+    }
 }
 
 /* 
